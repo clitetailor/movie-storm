@@ -4,9 +4,15 @@
 
 This is the front-end page of my machine learning subject at the university. The project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.5.
 
+## Prerequisite
+
+> - NodeJS version > 8
+>
+> - Angular CLI
+
 ## How to run
 
-Open command prompt and run the following command:
+To launch the app, open command prompt from the project folder and run the following command:
 
 ```bash
 ng serve
