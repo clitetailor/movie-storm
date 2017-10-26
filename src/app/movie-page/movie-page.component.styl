@@ -1,0 +1,104 @@
+@keyframes translateIn {
+  0% {
+    transform: translate(0, 100px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+
+  width: 100%;
+  height: 100%;
+
+  // animation-name: translateIn;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+
+  .dashboard {
+    display: flex;
+    flex-flow: column nowrap;
+
+    position: relative;
+
+    align-items: center;
+    justify-content: flex-start;
+
+    flex: 1 1 auto;
+    padding-left: 60px;
+    padding-right: 60px;
+
+    .movies, .back-action, .content {
+      width: 800px;
+    }
+
+    .back-action {
+      left: 80px;
+      top: 30px;
+
+      position: absolute;
+
+      font-family: Material Icons;
+      font-size: 28px;
+
+      color: white;
+      cursor: pointer;
+    }
+
+    .content {
+      display: flex;
+
+      flex-flow: column nowrap;
+      align-items: center;
+
+      margin-top: 80px;
+      padding: auto;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 18px;
+
+      color: white;
+      text-align: center;
+
+      h2 {
+        margin-bottom: 40px;
+      }
+    }
+
+    .movies {
+      display: flex;
+      margin-top: 60px;
+
+      justify-content: space-between;
+
+      .movie {
+        background: white;
+
+        margin-top: 6px;
+        margin-bottom: 6px;
+
+        width: 245px;
+        height: 347px;
+
+        transition-duration: 0.4s;
+
+        cursor: pointer;
+      }
+
+      .movie:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  app-side-info {
+    flex: 0 0 auto;
+
+    height: 1000px;
+    width: 480px;
+  }
+}
