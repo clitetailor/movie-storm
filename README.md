@@ -10,9 +10,25 @@ This is the front-end page of my machine learning subject at the university. The
 >
 > - Angular CLI
 
+## Installation
+
+To install the project, open command prompt from folder explorer and run the following commands:
+
+```bash
+git clone https://github.com/clitetailor/movie-storm.git
+cd ./movie-storm
+npm install
+```
+
 ## How to run
 
-To launch the app, open command prompt from the project folder and run the following command:
+To launch the app, select one of the following commands and run:
+
+```bash
+npm start
+```
+
+Or:
 
 ```bash
 ng serve
