@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-movie-page',
@@ -9,7 +10,9 @@ export class MoviePageComponent implements OnInit {
 
   private movies = [1, 2, 3];
 
-  constructor() { }
+  constructor(
+    private location: Location
+  ) { }
 
   ngOnInit() {
   }
