@@ -13,7 +13,7 @@ import { SideInfoComponent } from './movie-page/side-info/side-info.component';
 const appRoutes = [
   { path: '', component: FrontPageComponent },
   { path: 'login', component: LoginPageComponent },
-  { path: 'movie', component: MoviePageComponent }
+  { path: 'movie/:id', component: MoviePageComponent }
 ];
 
 @NgModule({

@@ -25,7 +25,7 @@ export class FrontPageComponent implements OnInit {
     this._searchFocus = false;
   }
 
-  public navigateToMovie() {
-    this.router.navigate(['movie']);
+  public navigateToMovie(i) {
+    this.router.navigate(['movie', i]);
   }
 }

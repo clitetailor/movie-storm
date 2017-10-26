@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="dashboard">
-    <div class="back-action">keyboard_backspace</div>
+    <div class="back-action" (click)="navigateBack()">keyboard_backspace</div>
 
     <div class="content">
       <h2>Sky Gate</h2>
@@ -24,7 +24,12 @@
     </div>
 
     <div class="movies">
-      <div *ngFor="let movie of movies" class="movie"></div>
+      <div
+        *ngFor="let movie of movies; let i = index"
+        class="movie"
+        (click)="navigateToMovie(i)"
+      >
+      </div>
     </div>
   </div>
 

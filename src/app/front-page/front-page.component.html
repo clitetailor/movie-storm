@@ -6,8 +6,11 @@
 
   <div class="movies">
     <!-- We will include the link inside block content. No need to wrap it inside an anchor again! -->
-    <div class="movie" *ngFor="let moive of movies" (click)="navigateToMovie()">
-
+    <div
+      class="movie"
+      *ngFor="let moive of movies; let i = index"
+      (click)="navigateToMovie(i)"
+    >
     </div>
   </div>
 </div>
