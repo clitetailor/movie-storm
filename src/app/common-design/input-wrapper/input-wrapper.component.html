@@ -1,0 +1,13 @@
+<div class="input-wrapper" [class.focus]="_focus">
+  <input
+    [type]="type"
+    [placeholder]="placeholder"
+    (focus)="focus()"
+    (blur)="focus()"
+    [ngModel]="value"
+    (ngModelChange)="inputChange($event)"
+  >
+  <div class="bottom-line">
+    <div class="bottom-line-effect"></div>
+  </div>
+</div>

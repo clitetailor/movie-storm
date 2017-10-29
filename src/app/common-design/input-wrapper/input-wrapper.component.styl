@@ -1,0 +1,38 @@
+input {
+  padding-top: 3px;
+  padding-bottom: 3px;
+
+  width: 100%;
+
+  border: none;
+  outline: none;
+  box-shadow: none;
+
+  font-family: Lato;
+  font-size: 18px;
+}
+
+.bottom-line {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+
+  height: 3px;
+  width: 100%;
+
+  margin-bottom: 50px;
+
+  background: #aaaaaa;
+
+  .bottom-line-effect {
+    width: 0%;
+    background: #111111;
+
+    transition: ease-in 0s;
+  }
+}
+
+.input-wrapper.focus .bottom-line-effect {
+  width: 100%;
+  transition: ease-out 0.2s;
+}
