@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -15,9 +16,13 @@ export class SignupPageComponent implements OnInit {
   private gender: String = 'male';
   private age: Number = 18;
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+
   }
 
   signup() {
@@ -30,7 +35,13 @@ export class SignupPageComponent implements OnInit {
         gender: this.gender,
         age: this.age
       }
-    );
+    )
+      .then(() => {
+        this.router.navigate(['login']);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
 }

@@ -47,20 +47,15 @@ export class AuthService {
       username: username,
       password: password,
       age: userInfo.age,
-      gender: userInfo.age
+      gender: userInfo.gender
     });
-
-    console.log(this.site('signup'));
 
     return this.http.post(
       this.site('signup'),
       data,
       this.createAuthHeader()
     )
-      .toPromise()
-      .catch(err => {
-        console.log(err);
-      });
+      .toPromise();
   }
 
   createAuthHeader() {
@@ -72,7 +67,6 @@ export class AuthService {
           .set('Content-Type', 'application/json')
       };
     }
-    console.log(this._site);
     return {
       headers: new HttpHeaders()
         .set('Access-Control-Allow-Origin', this._site)

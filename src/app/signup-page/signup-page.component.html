@@ -29,10 +29,10 @@
       <div class="input-line bottom">
         <app-select-input class="gender" label="Gender" [(ngModel)]="gender">
           <option value="male">Male</option>
-          <option value="famale">Female</option>
+          <option value="female">Female</option>
         </app-select-input>
         <app-select-input class="age" label="Age" [(ngModel)]="age">
-          <option value="i" *ngFor="let i of _validAges">{{i}}</option>
+          <option [value]="i" *ngFor="let i of _validAges">{{i}}</option>
         </app-select-input>
       </div>
     </div>
