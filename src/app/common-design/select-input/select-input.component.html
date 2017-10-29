@@ -1,6 +1,6 @@
 <div class="input-wrapper" [class.focus]="_focus">
   <label>{{label}}</label>
-  <select type="text" (focus)="focus()" [ngModel]="input" (ngModelChange)="inputChange($event)">
+  <select type="text" (focus)="focus()" (blur)="focus()" [ngModel]="input" (ngModelChange)="inputChange($event)">
     <ng-content></ng-content>
   </select>
   <div class="bottom-line">

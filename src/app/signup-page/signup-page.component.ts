@@ -13,7 +13,7 @@ export class SignupPageComponent implements OnInit {
   private password: String = '';
   private confirmPassword: String = '';
   private gender: String = 'male';
-  private age: Number = 5;
+  private age: Number = 18;
 
   constructor(private authService: AuthService) { }
 
@@ -21,12 +21,15 @@ export class SignupPageComponent implements OnInit {
   }
 
   signup() {
-    console.log(
+    console.log('signup');
+
+    this.authService.signup(
       this.username,
       this.password,
-      this.confirmPassword,
-      this.gender,
-      this.age
+      {
+        gender: this.gender,
+        age: this.age
+      }
     );
   }
 
