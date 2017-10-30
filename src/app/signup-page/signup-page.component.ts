@@ -22,12 +22,13 @@ export class SignupPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.authService.checkAuth();
+    if (this.authService.username) {
+      this.router.navigate(['home']);
+    }
   }
 
   signup() {
-    console.log('signup');
-
     this.authService.signup(
       this.username,
       this.password,

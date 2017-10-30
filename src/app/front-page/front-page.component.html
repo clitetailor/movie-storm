@@ -1,16 +1,11 @@
 <div class="wrapper">
-  <div class="search"  [class.focus]="_searchFocus">
-    <input type="Search" class="search-input" placeholder="Search" (focus)="searchFocus()" (blur)="searchBlur()">
-    <div class="submit">search</div>
-  </div>
+  <h1>Movie Storm</h1>
 
-  <div class="movies">
-    <!-- We will include the link inside block content. No need to wrap it inside an anchor again! -->
-    <div
-      class="movie"
-      *ngFor="let moive of movies; let i = index"
-      (click)="navigateToMovie(i)"
-    >
-    </div>
+  <h6>A movie fore-cast system for man-kind</h6>
+
+  <div class="action-line">
+    <a routerLink="/home" routerLinkActive="active">
+      <button class="start">Getting Started</button>
+    </a>
   </div>
 </div>

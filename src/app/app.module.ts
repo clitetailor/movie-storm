@@ -14,9 +14,11 @@ import { SideInfoComponent } from './movie-page/side-info/side-info.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { AuthService } from './auth.service';
 import { MovieService } from './movie.service';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const appRoutes = [
   { path: '', component: FrontPageComponent },
+  { path: 'home', component: HomePageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'signup', component: SignupPageComponent },
   { path: 'movie/:id', component: MoviePageComponent }
@@ -30,7 +32,8 @@ const appRoutes = [
     LoginPageComponent,
     MoviePageComponent,
     SideInfoComponent,
-    SignupPageComponent
+    SignupPageComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,10 @@ const appRoutes = [
     HttpClientModule,
     FormsModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    MovieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,18 @@
+<app-navbar></app-navbar>
+
+<div class="wrapper">
+  <div class="search"  [class.focus]="_searchFocus">
+    <input type="Search" class="search-input" placeholder="Search" (focus)="searchFocus()" (blur)="searchBlur()">
+    <div class="submit">search</div>
+  </div>
+
+  <div class="movies">
+    <!-- We will include the link inside block content. No need to wrap it inside an anchor again! -->
+    <div
+      class="movie"
+      *ngFor="let moive of movies; let i = index"
+      (click)="navigateToMovie(i)"
+    >
+    </div>
+  </div>
+</div>

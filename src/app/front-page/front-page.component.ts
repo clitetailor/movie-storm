@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-front-page',
@@ -8,24 +7,9 @@ import { Router } from '@angular/router';
 })
 export class FrontPageComponent implements OnInit {
 
-  private movies = Array.from({ length: 8 }, (k, v) => k);
-
-  private _searchFocus = false;
-
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  private searchFocus() {
-    this._searchFocus = true;
-  }
-
-  private searchBlur() {
-    this._searchFocus = false;
-  }
-
-  public navigateToMovie(i) {
-    this.router.navigate(['movie', i]);
-  }
 }
