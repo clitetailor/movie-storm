@@ -43,7 +43,6 @@ export class AuthService {
       .toPromise()
       .then(token => {
         localStorage.setItem('auth-token', JSON.stringify(token));
-        console.log(token);
         this._username = username;
       });
   }

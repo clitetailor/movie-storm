@@ -10,6 +10,13 @@ export class MovieService {
     private authService: AuthService
   ) { }
 
+  searchFilm(searchString) {
+    this.http.get(
+      this.authService.site(`search/${searchString}`),
+      this.authService.createAuthHeader()
+    );
+  }
+
   getFilms() {
     return this.http.get(
       this.authService.site('films'),
