@@ -2,37 +2,37 @@
 
 @font-face {
   font-family: Lato;
-  src: url(./assets/Lato.ttf);
+  src: "./assets/Lato";
 }
 
 @font-face {
   font-family: "Lato Heavy";
-  src: url(./assets/Lato-Heavy.ttf);
+  src: "./assets/Lato-Heavy";
 }
 
 @font-face {
   font-family: "Lato-Light";
-  src: url(./assets/Lato-Light.ttf);
+  src: "./assets/Lato-Light";
 }
 
 @font-face {
   font-family: "Lato-Medium";
-  src: url(./assets/Lato-Medium.ttf);
+  src: "./assets/Lato-Medium";
 }
 
 @font-face {
   font-family: "Lato-Thin";
-  src: url(./assets/Lato-Thin.ttf);
+  src: "./assets/Lato-Thin";
 }
 
 @font-face {
   font-family: "Lato-Semibold";
-  src: url(./assets/Lato-Semibold.ttf);
+  src: "./assets/Lato-Semibold";
 }
 
 @font-face {
   font-family: "Material Icons";
-  src: url(./assets/MaterialIcons-Regular.ttf);
+  src: "./assets/MaterialIcons-Regular";
 }
 
 
