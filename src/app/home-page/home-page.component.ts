@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { MovieService } from '../movie.service';
@@ -10,18 +10,26 @@ import { MovieService } from '../movie.service';
 })
 export class HomePageComponent implements OnInit {
 
-  private movies = Array.from({ length: 8 }, (k, v) => k);
-
   private _searchFocus = false;
 
   constructor(
     private router: Router,
+    private ngZone: NgZone,
     private authService: AuthService,
     private movieService: MovieService
   ) { }
 
+  get movies() {
+    return this.movieService.movies;
+  }
+
   ngOnInit() {
-    this.movieService.getFilms();
+    this.movieService.getFilms()
+      .then(() => {
+        this.ngZone.run(() => {
+          console.log('!');
+        });
+      });
   }
 
   private searchFocus() {

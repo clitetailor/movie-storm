@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { MovieService } from '../movie.service';
 
 @Component({
   selector: 'app-movie-page',
@@ -9,14 +10,18 @@ import { Router } from '@angular/router';
 })
 export class MoviePageComponent implements OnInit {
 
-  private movies = [1, 2, 3];
-
   constructor(
     private location: Location,
-    private router: Router
+    private router: Router,
+    private movieService: MovieService
   ) { }
 
+  get movies() {
+    return Array.from({ length: 3 });
+  }
+
   ngOnInit() {
+    this.movieService.getFilms();
   }
 
   private navigateBack() {
