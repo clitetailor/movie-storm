@@ -10,7 +10,7 @@
     <!-- We will include the link inside block content. No need to wrap it inside an anchor again! -->
     <div
       class="movie"
-      *ngFor="let moive of movies; let i = index"
+      *ngFor="let movie of movies; let i = index"
       (click)="navigateToMovie(i)"
     >
       <img *ngIf="movie" [src]="movie.image_url" alt="movie.name" class="poster" width="100%" height="100%">
