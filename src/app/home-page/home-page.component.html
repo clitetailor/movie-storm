@@ -1,6 +1,8 @@
 <app-navbar></app-navbar>
 
 <div class="wrapper">
+  <div class="blur-background"></div>
+
   <div class="search"  [class.focus]="_searchFocus">
     <input type="Search" class="search-input" placeholder="Search" (focus)="searchFocus()" (blur)="searchBlur()">
     <div class="submit">search</div>

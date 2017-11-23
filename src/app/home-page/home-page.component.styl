@@ -19,6 +19,36 @@
 
   z-index: 1;
 
+  @keyframes fade-in {
+    from {
+      filter: blur(10px) brightness(120%);
+    }
+
+    to {
+      filter: blur(20px) brightness(120%);
+      background-size: cover;
+    }
+  }
+
+  .blur-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: url('http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bcf17c40.r92.cf1.rackcdn.com/unsplash_527bf56961712_1.JPG');
+    background-size: cover;
+    filter: blur(20px);
+
+    animation-name: fade-in;
+    animation-duration: 2s;
+    animation-fill-mode: backwards;
+    animation-duration: 0.5s;
+
+    opacity: 0.2;
+  }
+
   .search {
     display: flex;
     align-items: stretch;
@@ -31,6 +61,8 @@
     background: white;
 
     transition: margin-bottom 0.5s;
+
+    z-index: 5;
 
     &.focus {
       margin-bottom: 160px;
@@ -167,8 +199,9 @@
           animation-duration: 1s;
           animation-fill-mode: backwards;
           animation-iteration-count: 0.8s;
-          animation-delay: i * 0.2s + 2.2s;
+          animation-delay: i * 0.2s + 1.4s;
 
+          transition-property: top left height width;
           transition-duration: 0.6s;
 
           z-index: 5;
