@@ -22,11 +22,14 @@
   @keyframes fade-in {
     from {
       filter: blur(10px) brightness(120%);
+      background-size: cover;
+      background-position: center;
     }
 
     to {
       filter: blur(20px) brightness(120%);
       background-size: cover;
+      background-position: center;
     }
   }
 
@@ -37,9 +40,9 @@
     right: 0;
     bottom: 0;
 
-    background: url('http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bcf17c40.r92.cf1.rackcdn.com/unsplash_527bf56961712_1.JPG');
+    background-position: center;
     background-size: cover;
-    filter: blur(20px);
+    filter: blur(20px) brightness(120%);
 
     animation-name: fade-in;
     animation-duration: 2s;
@@ -107,21 +110,43 @@
     margin-top: $(54px);
     width: $(1000px);
 
+    $width = $(136px);
+    $height = $(206px);
+    $scale-width = $width * 1.3;
+    $scale-height = $height * 1.3;
+    $padding-top = (-($scale-height - $height) / 2);
+    $padding-left = (-($scale-width - $width) / 2);
+
     .movie {
       position: relative;
 
       margin: $(4.5px);
 
       width: $(323px);
-      height: $(206px);
+      height: $height;
 
       cursor: pointer;
 
       .movie-content {
-        width: 100%;
-        height: 100%;
+        position: absolute;
 
-        padding-right: $(206px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: $width;
+
+        h2 {
+          font-family: Lato;
+          font-size: $(18.75px);
+          color: (white - #303030);
+
+          mix-blend-mode: difference;
+          text-align: center;
+        }
       }
 
       @keyframes drop-in {
@@ -158,6 +183,21 @@
         }
       }
 
+      @keyframes drop-in-text {
+        0% {
+          transform: translate(0, $(-180px));
+          opacity: 0;
+        }
+
+        10% {
+          opacity: 0.8;
+        }
+
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+
       for i in 1 2 3 4 5 6 {
         &:nth-child({i}) .background {
           position: absolute;
@@ -178,12 +218,13 @@
           animation-delay: i * 0.2s;
         }
 
-        $width = $(136px);
-        $height = $(206px);
-        $scale-width = $width * 1.3;
-        $scale-height = $height * 1.3;
-        $padding-top = (-($scale-height - $height) / 2);
-        $padding-left = (-($scale-width - $width) / 2);
+        &:nth-child({i}) h2 {
+          animation-name: drop-in-text;
+          animation-duration: 1s;
+          animation-fill-mode: backwards;
+          animation-iteration-count: 1;
+          animation-delay: i * 0.2s + 0.4s;
+        }
 
         &:nth-child({i}) .image-wrapper {
           position: absolute;
@@ -203,8 +244,6 @@
 
           transition-property: top left height width;
           transition-duration: 0.6s;
-
-          z-index: 5;
 
           overflow: hidden;
 
@@ -230,6 +269,8 @@
             left: $padding-left;
             width: $scale-width;
             height: $scale-height;
+
+            z-index: 5;
 
             img {
               top: 0;

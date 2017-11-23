@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { CommonDesignModule } from './common-design/common-design.module';
 
 import { AppComponent } from './app.component';
@@ -42,7 +43,8 @@ const appRoutes = [
     ),
     CommonDesignModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   providers: [
     AuthService,

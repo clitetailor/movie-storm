@@ -5,7 +5,12 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class MovieService {
 
-  private _movies;
+  private _movies = Array.from({ length: 6 }, (v, k) => {
+    return {
+      id: -1,
+      image_url: ''
+    };
+  });
   private _movie;
 
   constructor(
@@ -18,7 +23,7 @@ export class MovieService {
   }
 
   public get movies() {
-    return this._movies || Array.from({ length: 6 });
+    return this._movies;
   }
 
   searchFilm(searchString) {
@@ -34,20 +39,12 @@ export class MovieService {
       this.authService.createAuthHeader()
     )
       .toPromise()
-      .then(films => {
-        const movies = [];
-
-        Object.keys(films).forEach((key) => {
-          Object.keys(films[key]).forEach(i => {
-            while (!movies[i]) {
-              movies.push({});
-            }
-
-            movies[i][key] = films[key][i];
-          });
+      .then((films: any[]) => {
+        films.forEach((film, i) => {
+          Object.assign(this._movies[i], film);
         });
 
-        this._movies = movies;
+        console.log(this._movies, films);
       });
   }
 

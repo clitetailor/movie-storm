@@ -11,6 +11,7 @@ import { MovieService } from '../movie.service';
 export class HomePageComponent implements OnInit {
 
   private _searchFocus = false;
+  private regex = /\((.*)\)/;
 
   constructor(
     private router: Router,
@@ -24,12 +25,13 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.movieService.getFilms()
-    //   .then(() => {
-    //     this.ngZone.run(() => {
-    //       console.log('!');
-    //     });
-    //   });
+    this.movieService.getFilms()
+      .then(() => {
+        console.log(this.movies);
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   private searchFocus() {

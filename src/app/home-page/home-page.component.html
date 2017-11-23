@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
 <div class="wrapper">
-  <div class="blur-background"></div>
+  <div class="blur-background" [ngStyle]="{'background': 'url(' + movies[0].image_url + ')'}"></div>
 
   <div class="search"  [class.focus]="_searchFocus">
     <input type="Search" class="search-input" placeholder="Search" (focus)="searchFocus()" (blur)="searchBlur()">
@@ -19,11 +19,11 @@
       </div>
 
       <div class="image-wrapper">
-        <img class="poster">
+        <img class="poster" [src]="movie.image_url">
       </div>
 
       <div class="movie-content">
-
+        <h2>{{movie.name && movie.name.substr(0, movie.name.match(regex)?.index)}}</h2>
       </div>
     </div>
   </div>
