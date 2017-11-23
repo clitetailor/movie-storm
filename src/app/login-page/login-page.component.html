@@ -2,29 +2,16 @@
 
 <div class="wrapper">
   <div class="wire-frame">
-    <div class="top-line">
       <h1>Login</h1>
-    </div>
 
-    <div class="content">
-      <div class="input-line first-child">
-        <app-input-wrapper
-          type="text"
-          placeholder="Name"
-          [(ngModel)]="username"
-        ></app-input-wrapper>
-      </div>
-      <div class="input-line last">
-        <app-input-wrapper
-          type="password"
-          placeholder="Password"
-          [(ngModel)]="password"
-        ></app-input-wrapper>
-      </div>
-    </div>
+      <app-input-wrapper
+        type="text"
+        placeholder="Name"
+        [(ngModel)]="username"
+      ></app-input-wrapper>
 
-    <div class="submit-line" (click)="login()">
-      <button>Done</button>
-    </div>
+      <div class="submit-line" (click)="login()">
+        <button>Done</button>
+      </div>
   </div>
 </div>

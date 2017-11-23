@@ -49,7 +49,7 @@
       cursor: pointer;
     }
 
-    .content {
+    .content, .fake-content {
       display: flex;
 
       flex-flow: column nowrap;
@@ -66,6 +66,25 @@
 
       h2 {
         margin-bottom: 40px;
+      }
+    }
+
+    .fake-content {
+      span {
+        border-radius: 2px;
+
+        background: white;
+        color: black;
+
+        &.header {
+          padding: 20px;
+
+          width: 100px;
+        }
+
+        &.paragraph {
+
+        }
       }
     }
 

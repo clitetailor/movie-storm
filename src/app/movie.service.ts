@@ -6,14 +6,19 @@ import { AuthService } from './auth.service';
 export class MovieService {
 
   private _movies;
+  private _movie;
 
   constructor(
     private http: HttpClient,
     private authService: AuthService
   ) { }
 
+  get movie() {
+    return this._movie;
+  }
+
   public get movies() {
-    return this._movies || Array.from({ length: 8 });
+    return this._movies || Array.from({ length: 6 });
   }
 
   searchFilm(searchString) {
@@ -43,14 +48,24 @@ export class MovieService {
         });
 
         this._movies = movies;
-        console.log(movies);
       });
   }
 
   getFilm(index) {
-    return this.http.get(
-      this.authService.site(`film/${index}`),
-      this.authService.createAuthHeader()
-    );
+    this._movie = undefined;
+    const movie = this._movies.find(_movie => _movie.id === index);
+
+    if (!movie) {
+      return this.http.get(
+        this.authService.site(`film/${index}`),
+        this.authService.createAuthHeader()
+      )
+        .toPromise()
+        .then(film => {
+          this._movie = film;
+        });
+    } else {
+      this._movie = movie;
+    }
   }
 }

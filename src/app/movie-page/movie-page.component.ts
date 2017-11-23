@@ -20,6 +20,10 @@ export class MoviePageComponent implements OnInit {
     return Array.from({ length: 3 });
   }
 
+  get movie() {
+    return this.movieService.movie;
+  }
+
   ngOnInit() {
     this.movieService.getFilms();
   }
@@ -28,7 +32,7 @@ export class MoviePageComponent implements OnInit {
     this.location.back();
   }
 
-  public navigateToMovie(i) {
+  private navigateToMovie(i) {
     this.router.navigate(['movie', i]);
   }
 }

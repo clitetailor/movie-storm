@@ -24,12 +24,12 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.movieService.getFilms()
-      .then(() => {
-        this.ngZone.run(() => {
-          console.log('!');
-        });
-      });
+    // this.movieService.getFilms()
+    //   .then(() => {
+    //     this.ngZone.run(() => {
+    //       console.log('!');
+    //     });
+    //   });
   }
 
   private searchFocus() {

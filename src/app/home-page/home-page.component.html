@@ -13,7 +13,16 @@
       *ngFor="let movie of movies; let i = index"
       (click)="navigateToMovie(i)"
     >
-      <img *ngIf="movie" [src]="movie.image_url" alt="movie.name" class="poster" width="100%" height="100%">
+      <div class="background">
+      </div>
+
+      <div class="image-wrapper">
+        <img class="poster">
+      </div>
+
+      <div class="movie-content">
+
+      </div>
     </div>
   </div>
 </div>
