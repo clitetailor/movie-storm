@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MovieService } from '../movie.service';
 
 @Component({
@@ -10,22 +10,60 @@ import { MovieService } from '../movie.service';
 })
 export class MoviePageComponent implements OnInit {
 
+  private movie: any = {
+    image_url: ''
+  };
+  private routeSnapshot;
+
+  private relatedMovies = Array.from({ length: 3 }, (v, k) => {
+    return {
+      id: -1,
+      image_url: '',
+      name: ''
+    };
+  });
+
   constructor(
     private location: Location,
     private router: Router,
-    private movieService: MovieService
-  ) { }
-
-  get movies() {
-    return Array.from({ length: 3 });
+    private route: ActivatedRoute,
+    private movieService: MovieService,
+    private ngZone: NgZone
+  ) {
+    this.routeSnapshot = this.route.snapshot;
   }
 
-  get movie() {
-    return this.movieService.movie;
+  private get id() {
+    return this.routeSnapshot.paramMap.get('id');
+  }
+
+  private getMovie() {
+    this.movieService.getMovieById(this.id)
+      .then(movie => {
+        this.ngZone.run(() => {
+          this.movie = movie;
+        });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
+  private getRelatedMovies() {
+    this.movieService.getMovies()
+      .then(movies => {
+        this.relatedMovies.forEach((movie, i) => {
+          Object.assign(movie, movies[i]);
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   ngOnInit() {
-    this.movieService.getFilms();
+    this.getMovie();
+    this.getRelatedMovies();
   }
 
   private navigateBack() {
@@ -33,6 +71,8 @@ export class MoviePageComponent implements OnInit {
   }
 
   private navigateToMovie(i) {
-    this.router.navigate(['movie', i]);
+    if (i > 0) {
+      this.router.navigate(['movie', i]);
+    }
   }
 }

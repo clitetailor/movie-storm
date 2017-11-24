@@ -9,8 +9,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  private username: String;
-  private password: String;
+  private identity;
 
   constructor(
     private authService: AuthService,
@@ -18,22 +17,10 @@ export class LoginPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authService.checkAuth();
-    if (this.authService.username) {
-      this.router.navigate(['home']);
-    }
+
   }
 
   private login() {
-    this.authService.login(
-      this.username,
-      this.password
-    )
-      .then(() => {
-        this.router.navigate(['home']);
-      })
-      .catch(err => {
-        console.error(err);
-      });
+
   }
 }

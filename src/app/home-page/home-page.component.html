@@ -12,8 +12,8 @@
     <!-- We will include the link inside block content. No need to wrap it inside an anchor again! -->
     <div
       class="movie"
-      *ngFor="let movie of movies; let i = index"
-      (click)="navigateToMovie(i)"
+      *ngFor="let movie of movies"
+      (click)="navigateToMovie(movie.id)"
     >
       <div class="background">
       </div>

@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
-export class AuthService {
+export class AuthService implements OnInit {
   private _site = 'http://127.0.0.1:5000';
-  private _username: String;
+  private userId = undefined;
 
   constructor(private http: HttpClient) { }
 
@@ -15,60 +15,21 @@ export class AuthService {
     ].join('/');
   }
 
-  public get username() {
-    return this._username;
-  }
-
-  checkAuth() {
-    const token = localStorage.getItem('auth-token');
-    if (token && token !== 'null' && token !== 'undefined') {
-      const data = JSON.parse(token);
-      this._username = data['username'];
+  ngOnInit() {
+    const userId = localStorage.getItem('user-id');
+    if (
+      userId === undefined
+      || userId === ''
+      || userId === 'undefined'
+    ) {
+      // If there's no user id, then pass.
+    } else {
+      this.userId = Math.round( Number(userId) );
     }
   }
 
-  login(username, password) {
-    const data = JSON.stringify({
-      username: username,
-      password: password
-    });
-
-    console.log(data);
-
-    return this.http.post(
-      this.site('login'),
-      data,
-      this.createAuthHeader()
-    )
-      .toPromise()
-      .then(token => {
-        localStorage.setItem('auth-token', JSON.stringify(token));
-        this._username = username;
-      });
-  }
-
-  logout() {
-    localStorage.setItem('auth-token', undefined);
-    this._username = undefined;
-  }
-
-  signup(username, password, userInfo) {
-    const data = JSON.stringify({
-      username: username,
-      password: password,
-      age: userInfo.age,
-      gender: userInfo.gender
-    });
-
-    return this.http.post(
-      this.site('signup'),
-      data,
-      this.createAuthHeader()
-    )
-      .toPromise()
-      .then(_data => {
-        console.log(_data);
-      });
+  public setUserId(id) {
+    this.userId = id;
   }
 
   createAuthHeader() {

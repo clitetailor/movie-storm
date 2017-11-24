@@ -13,6 +13,13 @@ export class HomePageComponent implements OnInit {
   private _searchFocus = false;
   private regex = /\((.*)\)/;
 
+  private movies: any[] = Array.from({ length: 6 }, () => {
+    return {
+      id: -1,
+      image_url: ''
+    };
+  });
+
   constructor(
     private router: Router,
     private ngZone: NgZone,
@@ -20,14 +27,14 @@ export class HomePageComponent implements OnInit {
     private movieService: MovieService
   ) { }
 
-  get movies() {
-    return this.movieService.movies;
-  }
-
   ngOnInit() {
-    this.movieService.getFilms()
-      .then(() => {
-        console.log(this.movies);
+    this.movieService.getMovies()
+      .then((movies: any[]) => {
+        this.ngZone.run(() => {
+          this.movies.forEach((movie, i) => {
+            Object.assign(movie, movies[i]);
+          });
+        });
       })
       .catch(err => {
         console.error(err);
@@ -43,6 +50,8 @@ export class HomePageComponent implements OnInit {
   }
 
   public navigateToMovie(i) {
-    this.router.navigate(['movie', i]);
+    if (i > 0) {
+      this.router.navigate(['movie', i]);
+    }
   }
 }

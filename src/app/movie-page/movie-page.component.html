@@ -2,31 +2,37 @@
 
 <div class="wrapper">
   <div class="dashboard">
+    <div class="background"></div>
+
     <div class="back-action" (click)="navigateBack()">keyboard_backspace</div>
 
-    <div class="content" *ngIf="movie">
-      <h2>{{movie?.title}}</h2>
+    <div class="current-movie">
+      <div class="poster" [ngStyle]="{'background': 'url(' + movie.image_url + ')'}"></div>
 
-      <p *ngFor="let p of movie?.content?.split('\n')">
-      </p>
-    </div>
-
-    <div class="fake-content" *ngIf="!movie">
-      <span class="header"><h2>&nbsp;</h2></span>
-
-      <span *ngFor="let p of [1, 2, 3, 4, 5]" class="paragraph">
-      </span>
-    </div>
-
-    <div class="movies">
-      <div
-        *ngFor="let movie of movies; let i = index"
-        class="movie"
-        (click)="navigateToMovie(i)"
-      >
+      <div class="about">
+        <h1>{{movie.name}}</h1>
+        <span>star star star star star_half</span>
       </div>
     </div>
   </div>
 
-  <app-side-info></app-side-info>
+  <div class="related-movies">
+    <div
+      class="movie" *ngFor="let movie of relatedMovies; let i = index"
+      (click)="navigateToMovie(i)"
+    >
+      <div class="poster">
+        <img [src]="movie.image_url" [alt]="movie.name"
+          width="100%"
+          height="100%"
+        >
+      </div>
+
+      <div class="about-movie">
+        <h2>
+          {{movie.name && movie.name.substr(0, movie.name.match(regex)?.index)}}
+        </h2>
+      </div>
+    </div>
+  </div>
 </div>
