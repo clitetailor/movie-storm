@@ -4,16 +4,16 @@
   </div>
 
   <nav class="account">
-    <ng-template [ngIf]="!username">
+    <ng-template [ngIf]="!userId && userId !== 0 || userId === -1">
       <a routerLink="/login" routerLinkActive="active">
         Login
       </a>
     </ng-template>
 
-    <ng-template [ngIf]="username">
-      <a></a>
+    <ng-template [ngIf]="(userId || userId === 0) && userId !== -1">
+      <a>Id: {{userId}}</a>
       /
-      <a>Logout</a>
+      <a (click)="logout()">Logout</a>
     </ng-template>
   </nav>
 </div>

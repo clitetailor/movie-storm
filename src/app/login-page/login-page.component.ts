@@ -17,10 +17,29 @@ export class LoginPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.authService.checkUserId()
+      .then((userId) => {
+        if (
+          (userId || userId === 0)
+          && userId !== -1
+        ) {
+          this.router.navigate(['home']);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   private login() {
-
+    if (
+      !Number.isNaN(this.identity)
+      && Number.isInteger( Number(this.identity) )
+    ) {
+      this.authService.setUserId(this.identity);
+      this.router.navigate(['home']);
+    } else {
+      console.error('Login Failed!');
+    }
   }
 }
