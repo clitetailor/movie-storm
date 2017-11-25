@@ -14,6 +14,8 @@ import { MoviePageComponent } from './movie-page/movie-page.component';
 import { AuthService } from './auth.service';
 import { MovieService } from './movie.service';
 import { HomePageComponent } from './home-page/home-page.component';
+import { HttpService } from './http.service';
+import { SearchService } from './search.service';
 
 const appRoutes = [
   { path: '', component: FrontPageComponent },
@@ -43,7 +45,9 @@ const appRoutes = [
   ],
   providers: [
     AuthService,
-    MovieService
+    MovieService,
+    HttpService,
+    SearchService
   ],
   bootstrap: [AppComponent]
 })
