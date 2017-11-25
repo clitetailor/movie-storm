@@ -1,7 +1,8 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { MovieService } from '../movie.service';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-movie-page',
@@ -13,7 +14,6 @@ export class MoviePageComponent implements OnInit {
   private movie: any = {
     image_url: ''
   };
-  private routeSnapshot;
 
   private relatedMovies = Array.from({ length: 3 }, (v, k) => {
     return {
@@ -29,24 +29,48 @@ export class MoviePageComponent implements OnInit {
     private route: ActivatedRoute,
     private movieService: MovieService,
     private ngZone: NgZone
-  ) {
-    this.routeSnapshot = this.route.snapshot;
+  ) { }
+
+  public ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.router.navigated = false;
+        window.scrollTo(0, 0);
+      }
+    });
+
+    this.getMovie();
+    this.getRelatedMovies();
   }
 
-  private get id() {
-    return this.routeSnapshot.paramMap.get('id');
+  private getId() {
+    return this.route.paramMap.map(param => param.get('id'));
   }
 
   private getMovie() {
-    this.movieService.getMovieById(this.id)
-      .then(movie => {
-        this.ngZone.run(() => {
-          this.movie = movie;
+    this.getId().subscribe((id) => {
+      this.movieService.getMovieById(id)
+        .then(movie => {
+          this.ngZone.run(() => {
+            this.movie = movie;
+          });
+        })
+        .catch(err => {
+          console.error(err);
         });
-      })
-      .catch(err => {
-        console.error(err);
-      });
+    }, (err) => {
+      console.error(err);
+    });
+  }
+
+  private getMovieName(movie) {
+    const matchGroup =
+      movie && movie.name && movie.name.match(/\((.*)\)/);
+
+    return movie.name
+      && movie.name.substr(
+        0, matchGroup ? matchGroup.index : undefined
+      );
   }
 
   private getRelatedMovies() {
@@ -59,11 +83,6 @@ export class MoviePageComponent implements OnInit {
       .catch(err => {
         console.log(err);
       });
-  }
-
-  ngOnInit() {
-    this.getMovie();
-    this.getRelatedMovies();
   }
 
   private navigateBack() {

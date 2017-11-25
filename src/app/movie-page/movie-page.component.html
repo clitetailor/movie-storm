@@ -10,7 +10,7 @@
       <div class="poster" [ngStyle]="{'background': 'url(' + movie.image_url + ')'}"></div>
 
       <div class="about">
-        <h1>{{movie.name}}</h1>
+        <h1>{{getMovieName(movie)}}</h1>
         <span>star star star star star_half</span>
       </div>
     </div>
@@ -18,8 +18,8 @@
 
   <div class="related-movies">
     <div
-      class="movie" *ngFor="let movie of relatedMovies; let i = index"
-      (click)="navigateToMovie(i)"
+      class="movie" *ngFor="let movie of relatedMovies"
+      (click)="navigateToMovie(movie.id)"
     >
       <div class="poster">
         <img [src]="movie.image_url" [alt]="movie.name"
@@ -30,7 +30,7 @@
 
       <div class="about-movie">
         <h2>
-          {{movie.name && movie.name.substr(0, movie.name.match(regex)?.index)}}
+          {{getMovieName(movie)}}
         </h2>
       </div>
     </div>

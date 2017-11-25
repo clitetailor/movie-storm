@@ -11,7 +11,6 @@ import { MovieService } from '../movie.service';
 export class HomePageComponent implements OnInit {
 
   private _searchFocus = false;
-  private regex = /\((.*)\)/;
 
   private movies: any[] = Array.from({ length: 6 }, () => {
     return {
@@ -39,6 +38,16 @@ export class HomePageComponent implements OnInit {
       .catch(err => {
         console.error(err);
       });
+  }
+
+  private getMovieName(movie) {
+    const matchGroup =
+      movie && movie.name && movie.name.match(/\((.*)\)/);
+
+    return movie.name
+      && movie.name.substr(
+        0, matchGroup ? matchGroup.index : undefined
+      );
   }
 
   private searchFocus() {
