@@ -25,7 +25,7 @@ export class HttpService {
 
   public get(path) {
     const headers = this.auth.addAuth(
-      this.createHeaders
+      this.createHeaders()
     );
 
     return this.http.get(
@@ -36,7 +36,7 @@ export class HttpService {
 
   public post(path, data) {
     const headers = this.auth.addAuth(
-      this.createHeaders
+      this.createHeaders()
     );
 
     return this.http.post(
