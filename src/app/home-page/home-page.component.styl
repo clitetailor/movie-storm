@@ -17,9 +17,9 @@
   align-items: center;
   justify-content: flex-start;
 
-  overflow: hidden;
-
   z-index: 1;
+
+  overflow-y: scroll;
 
   @keyframes fade-in {
     from {
@@ -55,6 +55,8 @@
   }
 
   .search {
+    position: relative;
+
     display: flex;
     align-items: stretch;
     height: $(40px);
@@ -69,8 +71,42 @@
 
     z-index: 5;
 
+    .suggestions {
+      display: none;
+    }
+
     &.focus {
       margin-bottom: 160px;
+
+      .suggestions {
+        position: absolute;
+        top: 100%;
+        height: max-content;
+        width: 100%;
+
+        display: block;
+
+        background: white;
+
+        cursor: pointer;
+
+        .suggest {
+          display: flex;
+          align-items: center;
+
+          height: $(40px);
+          width: 100%;
+
+          padding: 0 $(32px);
+
+          font-family: Lato;
+          font-size: $(18.75px);
+
+          &:hover {
+            background: alpha(blue, 0.1);
+          }
+        }
+      }
     }
 
     .search-input {

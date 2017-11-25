@@ -3,9 +3,25 @@
 <div class="wrapper">
   <div class="blur-background" [ngStyle]="{'background': 'url(' + movies[0].image_url + ')'}"></div>
 
-  <div class="search"  [class.focus]="_searchFocus">
-    <input type="Search" class="search-input" placeholder="Search" (focus)="searchFocus()" (blur)="searchBlur()">
+  <div class="search" [class.focus]="_searchFocus">
+    <input type="Search" class="search-input"
+      #searchInput
+      placeholder="Search"
+      [(ngModel)]="searchString"
+      (blur)="searchBlur()"
+      (focus)="searchFocus()"
+      (keyup)="onSearchInput($event.target.value)"
+      (keydown.enter)="search($event.target.value)"
+    />
     <div class="submit">search</div>
+    <div class="suggestions">
+      <div
+        *ngFor="let suggest of suggestions" class="suggest"
+        (click)="navigateToMovie(suggest.id)"
+      >
+        <span>{{getMovieName(suggest)}}</span>
+      </div>
+    </div>
   </div>
 
   <div class="movies">
