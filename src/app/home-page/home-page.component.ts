@@ -87,7 +87,7 @@ export class HomePageComponent implements OnInit {
       .subscribe((suggestions: any[]) => {
 
         if (suggestions.length > 3) {
-          this.movies = suggestions.slice(0, 9);
+          this.movies = suggestions.slice(0, 6);
         }
       }, err => {
         return new Subject();
