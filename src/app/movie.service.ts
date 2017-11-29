@@ -14,7 +14,7 @@ export class MovieService {
   }
 
   public getMovies() {
-    return this.http.get('films')
+    return this.http.get(`user?id=${localStorage.getItem('user-id')}`)
       .toPromise();
   }
 }

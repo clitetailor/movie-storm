@@ -60,6 +60,8 @@ export class HomePageComponent implements OnInit {
         this.movies.forEach((movie, i) => {
           Object.assign(movie, movies[i]);
         });
+
+        console.log(movies);
       })
       .catch(err => {
         console.error(err);
